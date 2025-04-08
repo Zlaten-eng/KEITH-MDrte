@@ -35,8 +35,8 @@ const greetmsg = process.env.GREET_MSG || 'currently available please try again 
 const timezone = process.env.TIMEZONE || 'Africa/Nairobi';
 const autoread = process.env.AUTOREAD || 'true';
 const permit = process.env.PM_PERMIT || 'true';
-const voicechatbot = process.env.VOICECHATBOT || 'true';
-const voicechatbot2 = process.env.VOICECHATBOT2 || 'true';
+const voicechatbot = process.env.VOICECHATBOT || 'false';
+const voicechatbot2 = process.env.VOICECHATBOT2 || 'false';
 const anticallmsg = process.env.ANTICALL_MSG || 'call declined successfully opt for direct message ';
 const autobio = process.env.AUTOBIO || 'false';
 
