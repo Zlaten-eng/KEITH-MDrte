@@ -28,7 +28,7 @@ module.exports = async (context) => {
   const name = m.pushName || client.getName(m.sender);
   const url = 'https://github.com/Keithkeizzah/KEITH-MD2';
   const murl = 'https://whatsapp.com/channel/0029Vaan9TF9Bb62l8wpoD47';
-  const img = 'https://i.imgur.com/vTs9acV.jpeg';
+  const img = 'https://files.catbox.moe/b3i1b9.jpg';
 
   // Constructing the contact message
   const con = {
@@ -57,8 +57,8 @@ module.exports = async (context) => {
     contextInfo: {
       mentionedJid: [m.sender],
       externalAdReply: {
-        title: '𝗜 𝗔𝗠 𝗔𝗟𝗜𝗩𝗘 𝗠𝗢𝗧𝗛𝗘𝗥𝗙𝗨𝗖𝗞𝗘𝗥',
-        body: 'Regards Keithkeizzah',
+        title: 'RADA UMBWAAAA HII',
+        body: 'Regards sîgtryggr',
         thumbnailUrl: img,
         sourceUrl: murl,
         mediaType: 1,
