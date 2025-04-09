@@ -1,19 +1,19 @@
 /*I wrote a script to automate my job. Now I just sit back and watch Netflix while it runs.*/
 
-const session = process.env.SESSION || 'KEITH;;;H4sIAAAAAAAAA61V2Y6jRhT9lahe7R6zGrDUUoA2XvCONxzloYBiMauLwoBHfp63/MK8RfmP/NB8QoTdrW5pZjodKTyViqpzz7333FOfQZIGOdJRDXqfQYaDMySoWZI6Q6AHlMJ1EQZt4EACQQ/oE7+a00uhGFeXaSbmYas0rL2CopaOLyNnclQzmVj0KOyXj+DaBllhRYH9DqCGWTpG81F1qENqcW7t9A0eU60qOVf2yHU2xJz5E4mgw7D/CK4NIgxwkHj9zEcxwjDSUb2AAf4Y/a5eiXvdvzChq9qXEXdYilb2RFE5JKwpVDP/QPuUlUEmTj9Gn8fWpjvW0dBLzem6NtiONpwOYtGPqnDTLWrZbiWdU4UilbrTzwMvQc7IQQkJSP3hug+0nbkiKaMxazKeGMeB1vEcOiPmtlTWHTviym6532utci9/jLgHBXnqx0tMn/zEL/rRtiqZIAlrQbSE0piZRbpbGZsjnYzeEl/gF62E/6XugUZsitGPRsak/aVjtYbbvL7EPDbUgXCKTkJ5CteXgZDG04/R5/pTdHK9SG3xo42ZepRmd846wfRp4KgT30yy7fnpwq2GlfhKH5ICv8dyq5f8RbArJ1+dvSxBLXemjrtiqSrjwjGomhzYi6DZVOSgzniwlE6ThS6xYXf8RF10j2CX7uv40M/j5WDhioPBoGvqqvd4yyhE9cgBPfraBhh5QU4wJEGaNHtiG0DnbCAbI3IrLqhCers/8vnOWHlaJJx5yiz3e6ZzHLNBvKHRrrMYKYi7XHT5EbRBhlMb5TlyhkFOUlxPUZ5DD+Wg99utT03KGMUpQePAAT3A8JwgUZQgsZL0a/6p9CHJYZZ9ShABbeDiNJ4i0CO4QG1wu0Cxosooiib3aVak+iLH0nyf7UuiolEULUpNgvE96DqIUU5gnIEeLXAczXVFib+2/x8eiiyzypMsMhQvywrDsQqrdkW6K9OSxouy9i4Pielef2+DBFXkruKm9izfBm6Ac7JJiixKofMi8Zef0LbTIiFGndhqs0AY9OjXbURIkHh5k1mRQGz7wRmpTR6g58IoR9c2cNA5sFGDBwRG2Yin/cTYob2J+EW6jeZ02XTQT5P7EYbmbbvrOg8079gPnERLD5ZEWQ+szYgIShxHO13QlONuIM2dn+o5gjNp0fFhX5mpfu2Z9VDZhBGEiTm6afIuRISR81JlC9phka3TECXv4NasmfT1/OD4fnwYKKwUJFTuruY6Lb/BvQsc9D6/mraaOg2esN9ys0V3BZpuNXG+U0OPob4XRAKb02CBg8RGv/z9hzyb//Lt65e/vn398mcT9rknDaCDCAyiHPSAOh5qRWIuib7YnUvTlA1Z1uXb2Lz08MUZ7rM384+XBYniXafF0Uy6leoB7lTFORbgZSdAqz8pHflYmkw1+hEI6AFCFauREZb+Tk/tktotutLROPsWDNx1GWw9tDlSJ3EzXyfJarHeT6Cmz7ZO7muL02lIx0OTysmkXm1P+sWZ2/IOTzXuafnYRLtr6W0whSLcwVFYw2Lkc9jnzNKS8wm37Ux3Wlo9xSaPl4kd0N66oKTdTLRjY7GZPO1SVfLn52wWDsau60VWN7al01Bwdk/6XC3vnnXzzOj5rQqe/eSuPDdAN+t/7sm/9u51CKhr+w3G82PyE6Epa9MUL8LhEJ07xcw5aa7tnzqihfmCyemCiStVHC5H4mCWG+DaTHcWQeKmOAY9ABMHp4ED2iCCOZFf5/gHFiUybRDXcpYZBJKX8Qdy803mKrj+A7319DknCQAA';
+const session = process.env.SESSION || 'KEITH;;;H4sIAAAAAAAAA61V647qNhd9lcp/YUruF6SRGkIuXAIhBGaYqj8c4gSTK7YhE454pep7h77YpwwzmiO1PZ1KzS/Lsddee++1l7+BssIUzVALht9ATfAFMtQtWVsjMASjc5IgAvoghgyCIfDsPL1uRdzgHdtNpbbnyDYKC0ufVBPRTJ6jY1SxSBpHefoIbn1Qn6Mc738AOHVtcvWkw44OTkej17xITlWaJ/v45HNLZbdZSc1On9fL65U+gluHCDHBZWrVB1QgAvMZan2Iydfoz+ZWsVwmpBnJgYKNdDOhRRrXTZuau2XLfA9vj7unQyLm2tfoE3Pt6BexqPh2t1TJrLdpjHFY+Ut0KvDzYCaZcposnUAs0zt9itMSxZMYlQyz9st1N+ZreJkZ6q6sKslsp6f5q/rCpuHrZYmftOBQTePReJ3OB4LxNeLP++mLzGebSmTBsqZk0zuoPKyptpmepExa0Hrh69t9YYvG98R98qGV7N/UXZsmhpcybcXW11KTdgvRXQcDjq6P9sajZuBgI/G3KzPMua/R15975QWfXf9peWI21zPmQlpi94Um6nycnq64dXSV9+e9gPukD9mZ/IhlZnPk9dr0HGtg7xVZuFyqqU74QDCCcaVYznTx/LprbDgnx54xG8CWVaesGp8aMQn9KC52i3AwFZ62k/LZkVbFHDkj/9A8vmWUoXYSgyF/6wOCUkwZgQxX5dseL/UBjC9rtCeIvZUXaFqQ885A0LlF6J72xnj9sjrZl2ZyXp2ssEa0PsIDP8MTbfII+qAm1R5RimIXU1aR1kOUwhRRMPz1rVNd0gQVFUNTHIMhEGRJ1TSJ03lO/oX+3Bwgo7Cufy4RA32QkKrwEBgyckZ98HZBES2BM23FFnl7pAjSiB8JiqhIGm/LqiFZXYrFPWiIC0QZLGow5FVJ4jWF14Rb/7/hYXGSqKi6ooi2anCypNuazVmGyluSaMgj+cc8dOH2Wx+U6JXdddxVX5T7IMGEsk15rvMKxh8i//gJ9/vqXLJ1W+7NboEIGPKf24gxXKa0y+xcQrI/4AsyuzzAMIE5Rbc+iNEF71GHBw5hVo6zh2Z1xg+xaVyNp4Y4q66Dh6q8H5F1PoojXXhAqho/SLrGPUSKEj+gRI0kUZDURFVAV467hXR3/lbRo2hi6QPmStORZW6Tplk0g+cFDt1D9qbKuxQRQfFHlSO4z851WGWo/AHutRkZ5cRNTLO3NE89BTvPpTk7ydVR+g73LnEw/PZp22YVd3izmTBS3MUUdN3q4vxJDUNJ+rMgStidBus/fk8ZadOU/GS1lCFclj+tcXomf/wPElqVHYP39nTYMWIQ5xQMgbmAaq16pjUfPwlzzXEMKzXM1ACf7fywifsYbtWnubbP1ovAda8v50OAr8VmYg0GmhpnoXF1Q0YI1P2mrR7/AgQMwVhusrHPR9l+tiGqr4nldtYcjpN05qk+mxzDQz57Ea2eUvCRIciZoNjsKEleGqZhoxpzJ39dbdJlmUPO5eOaDNxLOEofu2h3WX0fzPNyZu+5pF0YtqjJhjPzZQeN/cVoEXB8oJRBcwpFfbmexerBM1OvLVHqunlvMbpSLV65qAy0yNtUIqXJNEFCD9dpejewNwPN3x8u/G4tdxEmGL29A+/t+cc2fs4Dd+t/h/H+svydlreIxwN3ah03wasmRNVmR+XcHPmDwVJ8sRrvlVOhIlxCzTuBWzfodQ5ZUpECDAEtIgj6IIeUGZ/z/BcWoYp9ULRGXa8ZZB82AIzu8zMB3P4Px80p/zEJAAA=';
 
-const prefix = process.env.PREFIX || '/';
+const prefix = process.env.PREFIX || '+';
 const mycode = process.env.CODE || "254";
 const author = process.env.OWNER_NAME || 'Siggtryggr';
 const packname = process.env.PACKNAME || 'Siggtryggr';
-const dev = process.env.OWNER_NUMBER || '254718835933';
+const dev = process.env.OWNER_NUMBER || '254788409105';
 const DevKeith = dev.split(",");
 const botname = process.env.BOTNAME || 'KEITH-MD';
 const mode = process.env.MODE || 'private';
 const gcpresence = process.env.GC_PRESENCE || 'false';
 const antionce = process.env.ANTIVIEWONCE || 'true';
 const sessionName = "session";
-const presence = process.env.WA_PRESENCE || 'online';
+const presence = process.env.WA_PRESENCE || 'recording';
 const herokuapikey = process.env.HEROKU_API_KEY || '';
 const herokuAppname = process.env.HEROKU_APP_NAME || '';
 const url = process.env.URL || 'https://files.catbox.moe/mikdi0.jpg';
@@ -21,7 +21,7 @@ const gurl = process.env.GURL || 'https://whatsapp.com/channel/0029Vaan9TF9Bb62l
 const reactemoji = process.env.EMOJI || '💚';
 const antitag = process.env.ANTITAG || 'true';
 const groupControl = process.env.GROUP_CONTROL || 'true';
-const anticall = process.env.ANTICALL || 'false';
+const anticall = process.env.ANTICALL || 'true';
 const antidelete = process.env.ANTIDELETE || 'true';
 const antibot = process.env.ANTIBOT || 'true';
 const autoview = process.env.AUTOVIEW_STATUS || 'true';
@@ -33,7 +33,7 @@ const autostatusreply = process.env.AUTOREPLY_STATUS || 'false';
 const autostatusmsg = process.env.AUTOSTATUS_MSG || 'viewed';
 const greetmsg = process.env.GREET_MSG || 'currently unavailable ';
 const timezone = process.env.TIMEZONE || 'Africa/Nairobi';
-const autoread = process.env.AUTOREAD || 'false';
+const autoread = process.env.AUTOREAD || 'true';
 const permit = process.env.PM_PERMIT || 'true';
 const voicechatbot = process.env.VOICECHATBOT || 'false';
 const voicechatbot2 = process.env.VOICECHATBOT2 || 'false';
