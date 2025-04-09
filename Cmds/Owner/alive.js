@@ -18,15 +18,15 @@ module.exports = async (context) => {
     'https://files.catbox.moe/wx8q6h.mp3',
     'https://files.catbox.moe/uj8fps.m4a',
     'https://files.catbox.moe/dc88bx.m4a',
-    'https://files.catbox.moe/tn32z0.m4a'
-    'https://files.catbox.moe/j0h61m.mp3'
-    'https://files.catbox.moe/ewl14k.mp3'
-    'https://files.catbox.moe/d6jp9h.mp3'
-    'https://files.catbox.moe/l9gcm3.mp3'
-    'https://files.catbox.moe/efsduh.mp3'
-    'https://files.catbox.moe/94obbp.mp3'
-    'https://files.catbox.moe/581b1u.aac'
-    'https://files.catbox.moe/ncnau9.m4a'
+    'https://files.catbox.moe/tn32z0.m4a';
+    'https://files.catbox.moe/j0h61m.mp3';
+    'https://files.catbox.moe/ewl14k.mp3';
+    'https://files.catbox.moe/d6jp9h.mp3';
+    'https://files.catbox.moe/l9gcm3.mp3';
+    'https://files.catbox.moe/efsduh.mp3';
+    'https://files.catbox.moe/94obbp.mp3';
+    'https://files.catbox.moe/581b1u.aac';
+    'https://files.catbox.moe/ncnau9.m4a';
   ];
 
   // Randomly pick an audio file
