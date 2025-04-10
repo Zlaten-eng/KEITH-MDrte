@@ -1,13 +1,13 @@
 /*I wrote a script to automate my job. Now I just sit back and watch Netflix while it runs.*/
-const session = process.env.SESSION || 'KEITH;;;H4sIAAAAAAAAA62WWY+qSBTHv0u9Yo/si0knw+qCqLjrZB4KKBRlLQoUb/zuE7Q73cnc6duTXJ4qLOf8zvY//ABpFpXIRg3o/QA5jmpIUHskTY5AD2hVGCIMOiCABIIe2PW1UXeIqSJu4NpQPX2w2NORyjOx4kzNOqTRkmWdbk648yu4d0BeeXHkf2GQFBvPdZMtu1keYLVbHb1NTQyXzmbbzVWDNXHZq85vt8xt9wrurUUY4Sg9mPkRJQjD2EbNDEb4e/jIoOSTI6FAGkhHNHWKegSv2GYcLQq2lrzpCkIgX8tI3Prfw6fxBI608aSRznNjgg7LYh40kuaxjA+HpedPqlsis1NRSugnfhkdUhQMA5SSiDTfznvkjCeUFSrBimYzd7qn87SUgmbV1/tjNDl6k/Nqelsr/QHzzbzLoVkzl9x0TNx3sXUqEqEq+ptm4aYDe6Lk9NyitTJSr7T6GXyG33vl/H/yvrG7TXZKfbHrW8W1qpCzTkkYrHjF6hfxlmk2cEXRnDkwv4lvJfs9fTRwRHmnURWP8254EM2ckrIIdmmlkpaSb9cXJzCdD3xIKvwVZahrztYw52ai22vNsGtlU83sZr7yeWo/gvFxWCWjtXuxN4WEPSxsXKePb7kSlaxi9wfUIsZUwZ+OxSLPbiN6O9isfM19fUR0Rs0wAD3m3gEYHaKSYEiiLH3cE5gOgEG9QD5G5JFeEA69jXA+CdZiNYizaX3dBnWuhgflRt1SKBkF8RylyEl6cl9BB+Q481FZomAQlSTDjYPKEh5QCXp/PSrVBo1RkhE0igLQA6zAS4wsc4LCcX+Wf1yOkJQwz/9IEQEdEOIscRDoEVyhDnh8ILOGqjCsIIicxXAcp9KSoIgMo1iCyCu62IaYPJ0uowSVBCY56DESz7M0Jyr0vfN7ODiJY0xZ0CTGUCWBkQ2F5TmdNnXG4mnVVH/BwfwuDsNQaYG1DEM1WEHTdc0QNYuhNY4VBc6guS85JEb5XRymyDOsKDCGomkWq/M8I+i8Yuo6L4i8xBpfc3Ds7+LQGN5iFVmWJM6QWYFTVUWzdI5jFYUWRZX5BQd3/7sDUnQlT31pp4JjOiCMcElWaZXHGQzexef9IfT9rErJokl9vT0gDHqfbiNCovRQtpFVKcT+MaqR3sYBeiGMS3TvgADVkY+Gj4AjFgmY282H9vjiTl+WiX6y3Hayjln6fIVHnCCzjPTC0WzwwjMC+yLTHPci0YoScFLoBSID2nQ8pb395j+VZjHdaxfdsubXqkHepBhcLzmfaIN66TzU4ikRCKPgPcse9M9VvszOKP1qPVMQLjh+Or+MThqckmYqcMNlqA64z3af0gN6Pz7WqZ4FrT1J3Dgbl7NAW63Wz7+6ocf/pCFS2L4NVuk5zS5p6+itCq2JABEYxSXoAX3oXarS1MxRGLKe3O+r5kHVDyr4qNq7Sj9VEPEao6ZjMXXcHR7PeHq0Vi7wkGTxbq1MVGKteYTqOTXTs9efGAE9UOUepNRYtGO/m4n2ZSbvhoZSrXfhXu5vm+khnQ9QOOwe+ofxeBk7E1PDMsqseD88cFWqs7vSDpLTzd7t1QLlKOkKlHp5bb09u+ezs/rGLcd4Mqns0ZRiteEwp47CLvMl5lTHHpONsxxl3fVRJDwl49KmpFuXTOaCGvVdovDp5jJWl7YwOleXQgmK2UyhaP3w3B+P/RW//TdEb8r+7LUwQo81/FaFX1bro+3pe+eTjbfF/h+tpW0rNXBHDZXfzL7d3KiJvg79fjYqRhsrXLrj+RoNUkyHp0sB7u085zEkYYYT0AMwDXAWBaADYlgS9WNyfyLSMt8BSaPm+YJA8j7wQG2vYZCA+z+0TUBOswoAAA=='
-const prefix = process.env.PREFIX || '#';
+const session = process.env.SESSION || 'KEITH;;;H4sIAAAAAAAAA61VyY6rRhT9lai2uGOKGUstBQM2Np4wnqMoKqDAZTOZycZP/oAs8wXZRMoq++z7h/IJEe1udUtvSEcKEhIqqs49995zT30CcUJybOIadD6BNCMVKnDzWdQpBh3QLX0fZ6AFPFQg0AHrrj6BFSI1l892/bVgBMjWDKZ7zIaRXhmTw3C4kHJlCqHyCG4tkJZOSNxvAFLslNJq3J3vA9LntvqQ0yaEX4XJvmYHlRm2ScmKGaQGx/wR3BpERDISB3q6xxHOUGjieoZI9jH6icpJZGWUqbs4Xfe62ouQ5ZkiXxbyst/vM4kglbOCXtGx9TH6+dgSKpv4AR/V7FTR4GYQQcvKt0IpbcfC7DLmhy5GSnoZ3OnnJIixN/BwXJCi/nDdzdF5bqASX4UkEKKDJtqxgQ82bRtikJ04WiWkHIlVOo/zjxFfWHvOmffaJ2qhbJOrJh/WjrQz00l5pW2mUHndOndHk+FyLb0nPstetXL8L3U/TfKpOKDrKDkpG9Iud2VdreZUT+zb8plyxdmYStZOAdvH88fon0NLkLj5Op87g3jdvw7wcH/Q2/F1O+3Gi1kQu+JFT52to+tv9FFRZt9iKfd9WXVWensIi6V+6G0kD601OWRCQyFmLhoWd0m282NAxlxXI6jcrGbLKTuyo61i84tIXw7cA6tenN0xXG2hVUXHdhA8Pmd0xPXAAx14a4EMByQvMlSQJG7WGA62APIqG7sZLp7LCybn1TbrrmYbF45KczZnrKmUjupF4q5X9ri/TUxq5J0lWz0Gj6AF0ixxcZ5jzyB5kWT1GOc5CnAOOj8+d6pJOsNRUuAh8UAHMDwn0pJAcyzP/ZB/f96jIkdp+n2MC9ACfpZEYww6RVbiFng+oMm8KkOJEaCsQ1nneZFWe3xPZgVJhlDVmhSje9AFiXBeoCgFHShyHCNyPCfeWv8TD4Wle2yPUwRN1xTY4zldZxRV4gTI6Lzc/TYPgb/91AIxvhR3HTfVZ2EL+CTLi2VcpmGCvFeRv/5ErpuUcWHXsas2HzgDnXfLuChIHORNZmWMMndPKqw2eYCOj8Ic31rAwxVxcYMHCovJ6Z811xLwZd0tTU694J7SdHCfxPctMuQQ8n3hwWNk94GTfOFBYhz/AfIy57nYFxyZB0057hbSnPmqoo1LzxTP6kyxBjC0/AxS7d3suhAx1p9VeZcizrD3WmUHuccyXSRHHH8DVylLMXa67UnbGeuD2tDdbbYUbZtVk3e4d4mDzqc321YTr8EzzdnQGPdl0HSrifOZGjrwcz3EqNkMFk9/XeqnP5/++M58+uXv337/9Utvw+KlRQ2+hwtEwhx0gDoUzXyadPXJacBmUr+v6IGiBk0PXlv6ahX3UTwTj/YpLbhW2jATkLfjT5HgrMLdaM4ta37GFv6lli3V1QaPXwABHbCb6LK7LnOGHkQYUZRe+v48Ko9UhGlrpPR7Ie8czECHO2ISL6ANE1/PexImU0i395RQ8eXJZUZ8ZdHrlGH6q+sm05THJtpdWu+D9aYTHo74nR9th2Gd+5VxSi5DsuX4eT6zKZo3sxKurMk4ETdt0ypj6SgvTmHmslZ/22XKdLmBnpAMYds9jVMh6CmXmpzvJvZsouHL5UVe7OUuRJ/g57vgpUf/1sq3kaBvrXcQL5fLV2TXdQexZ7QDbiyea0RF8RqjtIzgbm3TuDcuF7K4kdxqqcRKDW7NrKchKvwki0AHoNjLEuKBFghRXihvU/0Fo2D5FohqJU3tAhWvZgCU5jEXErj9A4YQTGo3CQAA'
+const prefix = process.env.PREFIX || '.';
 const mycode = process.env.CODE || "254";
 const author = process.env.OWNER_NAME || 'Siggtryggr';
 const packname = process.env.PACKNAME || 'Siggtryggr';
 const dev = process.env.OWNER_NUMBER || '254788409105';
 const DevKeith = dev.split(",");
 const botname = process.env.BOTNAME || 'siggtrygrr-MD';
-const mode = process.env.MODE || 'private';
+const mode = process.env.MODE || 'public';
 const gcpresence = process.env.GC_PRESENCE || 'true';
 const antionce = process.env.ANTIVIEWONCE || 'true';
 const sessionName = "session";
@@ -19,13 +19,13 @@ const gurl = process.env.GURL || 'https://chat.whatsapp.com/DM1tZs0C6LJ8Sxrhm6Qw
 const reactemoji = process.env.EMOJI || '';
 const antitag = process.env.ANTITAG || 'true';
 const groupControl = process.env.GROUP_CONTROL || 'true';
-const anticall = process.env.ANTICALL || 'true';
+const anticall = process.env.ANTICALL || 'false';
 const antidelete = process.env.ANTIDELETE || 'false';
-const antibot = process.env.ANTIBOT || 'true';
+const antibot = process.env.ANTIBOT || 'false';
 const autoview = process.env.AUTOVIEW_STATUS || 'true';
 const autolike = process.env.AUTOLIKE_STATUS || 'true';
 const chatbot = process.env.CHATBOT || 'false';
-const greet = process.env.GREET || 'false';
+const greet = process.env.GREET || 'true';
 const autodownloadstatus = process.env.AUTODOWNLOAD_STATUS || 'false';
 const autostatusreply = process.env.AUTOREPLY_STATUS || 'false';
 const autostatusmsg = process.env.AUTOSTATUS_MSG || 'viewed';
