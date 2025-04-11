@@ -21,8 +21,8 @@ const antitag = process.env.ANTITAG || 'true';
 const groupControl = process.env.GROUP_CONTROL || 'true';
 const anticall = process.env.ANTICALL || 'true';
 const antidelete = process.env.ANTIDELETE || 'false';
-const antidelete path: process.env.ANTIDELETE_PATH || "inbox", // set same for same chat 
-const antibot = process.env.ANTIBOT || 'false';
+const ANTI_DELETE: process.env.ANTI_DELETE !== undefined ? process.env.ANTI_DELETE === 'true' : true, 
+const ANTI_DELETE_PATH: process.env.ANTI_DELETE_PATH || "inbox", // set same for same chat
 const autoview = process.env.AUTOVIEW_STATUS || 'true';
 const autolike = process.env.AUTOLIKE_STATUS || 'false';
 const chatbot = process.env.CHATBOT || 'false';
