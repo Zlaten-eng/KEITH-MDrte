@@ -1,5 +1,5 @@
 const events = process.env.EVENTS || 'false';
-const botname = process.env.BOTNAME || 'KEITH-MD';
+const botname = process.env.BOTNAME || 'EMINEM-MD';
 
 const getContextInfo = (m) => {
     return {
@@ -30,7 +30,7 @@ const Events = async (client, keizzah) => {
             try {
                 dpuser = await client.profilePictureUrl(num, "image");
             } catch {
-                dpuser = "https://i.imgur.com/iEWHnOH.jpeg";
+                dpuser = "https://files.catbox.moe/969n99.jpg";
             }
 
             // Capture timestamps
