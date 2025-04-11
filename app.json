@@ -1,5 +1,5 @@
 {
-  "name": "Sîgtryggr-MD",
+  "name": "EMINEM-MD",
   "description": "This is a simple whatsapp bot built with nodejs to make your WhatsApp enjoyable ",
   "keywords": [
     "bot",
@@ -16,7 +16,7 @@
   ],
   "website": "https://github.com/Keithkeizzah/KEITH-MD#readme",
   "repository": "https://github.com/Keithkeizzah/KEITH-MD.git",
-  "logo": "https://files.catbox.moe/p2l906.jpg",
+  "logo": "https://files.catbox.moe/969n99.jpg",
   "success_url": "/",
   "env": {
     "PREFIX": {
