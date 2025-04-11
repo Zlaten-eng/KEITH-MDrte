@@ -18,7 +18,7 @@ async function authenticationn() {
       const [header, b64data] = session.split(';;;');
 
       
-      if (header === "KEITH" && b64data) {
+      if (header === "EMINEM" && b64data) {
         
         let compressedData = Buffer.from(b64data.replace('...', ''), 'base64');
 
@@ -39,7 +39,7 @@ async function authenticationn() {
       const [header, b64data] = session.split(';;;');
 
       
-      if (header === "KEITH" && b64data) {
+      if (header === "EMINEM" && b64data) {
         
         let compressedData = Buffer.from(b64data.replace('...', ''), 'base64');
 
@@ -176,7 +176,7 @@ async function handleMessageRevocation(client, revocationMessage) {
     const deletedByFormatted = `@${deletedBy.split('@')[0]}`;
     const sentByFormatted = `@${sentBy.split('@')[0]}`;
 
-    let notificationText = `*😈 Keith MD Anti-Delete 😈*\n\n` +
+    let notificationText = `*😈 EMINEM MD Anti-Delete 😈*\n\n` +
       `   *Deleted by:* ${deletedByFormatted}\n` +
       `   *Sent by:* ${sentByFormatted}\n\n`;
 
